@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 
 
 # Allowed naming rules
-allowed_prefixes = ("s00", "d00", "t01", "t00", "d01", "s09", "syd")
+allowed_prefixes = ("s00", "d00", "t01", "t00", "d01", "s09", "syd","s02")
 allowed_domains = (".blackbaud.global", ".blackbaudhost.com", ".blackbaud.net")
 
 # Load embedding model once
