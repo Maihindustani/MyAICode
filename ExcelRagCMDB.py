@@ -19,7 +19,7 @@ def main():
     # Load the Excel file
     df = pd.read_excel(r'C:\\Users\\shravantogarla\\Downloads\\Automation\\allwindowserverscmdb.xlsx',engine='openpyxl')
     texts = (
-    df[['Name','Used for','Supported by']].fillna('').astype(str).agg(' '.join, axis=1).tolist()
+    df[['Name','Used for','Supported by','Fully qualified domain name','Operating System','Operational status']].fillna('').astype(str).agg(' '.join, axis=1).tolist()
     )
     # texts = df[['Name','Used for','Supported by']].fillna('').apply(lambda row: ' '.join(row.astype(str)), axis=1).tolist()
 
@@ -51,10 +51,14 @@ def main():
         query_embedding=model.encode([query]).astype("float32")
         k=3
         distances, results = index.search(query_embedding, k)  
-        for i, idx in enumerate(results[0]):
-            print(f"Result {i+1} (distance {distances[0][i]:.4f}):")
-            print("Chunk:", all_chunks[idx])
-            print("-"*80)
+        table_data = [all_chunks[idx] for idx in results[0]]
+        df_results = pd.DataFrame(table_data, columns=["Result"])
+        print(df_results)
+        # for i, idx in enumerate(results[0]):
+        #     # print(f"Result {i+1} (distance {distances[0][i]:.4f}):")
+        #     # print("Chunk:", all_chunks[idx])
+        #     print(all_chunks[idx])
+        #     print("-"*80)
     # end_time = time.time()
     # print(f"Total execution time: {end_time - start_time:.2f} seconds")
 
