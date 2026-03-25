@@ -1,0 +1,8 @@
+# flask
+# pypdf
+# langchain
+# langchain-community
+# sentence-transformers
+# faiss-cpu
+# numpy
+chromadb
